@@ -30,44 +30,50 @@ public class GPSComputer {
 	public double totalDistance() {
 
 		double distance = 0;
-
-		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
-
-		// TODO - SLUTT
+		double sum=0;
+		for(int i=0; i<gpspoints.length-1; i++) {
+			sum= sum + GPSUtils.distance(gpspoints[i],gpspoints[i+1]);
+		}
+	return distance;
 
 	}
-
-	// beregn totale hÃ¸ydemeter (i meter)
+	//metode som beregner det totale antall høydemeter på ruten. Husk kun å 
+	//telle høydemeter mellom to punkter om en beveger seg oppover.
+	
 	public double totalElevation() {
 
 		double elevation = 0;
-
-		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
-
-		// TODO - SLUTT
-
+		double total=0;
+		for(int i=0; i<gpspoints.length-1; i++) {
+			double diff = gpspoints[i+1].getElevation() - gpspoints[i].getElevation();
+			if(diff > 0) {
+				elevation = elevation + diff;
+		
+		}
+			
+		}
+		return elevation;
 	}
 
 	// beregn total tiden for hele turen (i sekunder)
 	public int totalTime() {
-
-		throw new UnsupportedOperationException(TODO.method());
+		int totalTime=0;
+		return gpspoints[gpspoints.length-1].getTime()-gpspoints[0].getTime();
+//		for(int i =0; i<gpspoints.length-1; i++) {
+//			int sum= sum+ GPSPoint.getTime();
+//		}
+//		return totalTime;
+		
 
 	}
 		
 	// beregn gjennomsnitshastighets mellom hver av gps punktene
 
 	public double[] speeds() {
+		double[] speed= new double[];
+		for()
 		
-		// TODO - START		// OPPGAVE - START
 		
-		throw new UnsupportedOperationException(TODO.method());
-
-		// TODO - SLUTT
 
 	}
 	
@@ -75,13 +81,13 @@ public class GPSComputer {
 		
 		double maxspeed = 0;
 		
-		// TODO - START
-		
-		throw new UnsupportedOperationException(TODO.method());
-		
-		// TODO - SLUTT
-		
+//		for(int i=0; i<gpspoints.length; i++) {
+	    maxspeed=GPSUtils.findMax(speeds());
+	    
+//		}
+		return maxspeed;
 	}
+	
 
 	public double averageSpeed() {
 

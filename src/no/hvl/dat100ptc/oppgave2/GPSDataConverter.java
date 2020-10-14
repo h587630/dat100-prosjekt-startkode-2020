@@ -1,6 +1,8 @@
 package no.hvl.dat100ptc.oppgave2;
 
 import no.hvl.dat100ptc.TODO;
+import java.lang.Integer.*;
+import java.lang.Double.*;
 import no.hvl.dat100ptc.oppgave1.GPSPoint;
 
 public class GPSDataConverter {
@@ -12,30 +14,37 @@ public class GPSDataConverter {
 	
 	private static int TIME_STARTINDEX = 11; // startindex for tidspunkt i timestr
 
+	
+	//Hint: Se på substring-metoden i String-klassen samt parseInt-metoden i Integer-klassen.
 	public static int toSeconds(String timestr) {
 		
-		int secs;
+		
 		int hr, min, sec;
 		
-		// TODO
-		// OPPGAVE - START
+		hr= Integer.parseInt(timestr.substring(11,13));
+
+		min =Integer.parseInt(timestr.substring(14,16));
+		sec= Integer.parseInt(timestr.substring(17,19));
+		int antallSec= hr*3600+min*60+sec;
+		System.out.println("second: "+ antallSec);
+		return antallSec ;
 		
-		throw new UnsupportedOperationException(TODO.method());
-
-		// OPPGAVE - SLUTT
-		
-	}
-
-	public static GPSPoint convert(String timeStr, String latitudeStr, String longitudeStr, String elevationStr) {
-
-		GPSPoint gpspoint;
-
-		// TODO - START ;
-		
-		throw new UnsupportedOperationException(TODO.method());
-
-		// OPPGAVE - SLUTT ;
-	    
 	}
 	
-}
+	
+	
+	
+	public static GPSPoint convert(String timeStr, String latitudeStr, String longitudeStr, String elevationStr) {
+		//GPSPoint(int time, double latitude, double longitude, double elevation)
+		int time = toSeconds(timeStr);
+		// Double.parseDouble(String)
+		double latitude = Double.parseDouble(latitudeStr);
+		double longitude =Double.parseDouble(longitudeStr);
+		double elevation = Double.parseDouble(elevationStr);
+				
+		GPSPoint gpspoint = new GPSPoint(time,latitude, longitude,elevation);
+		
+		return gpspoint;
+	}
+	}
+
